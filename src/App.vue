@@ -1,37 +1,37 @@
 <template>
-  <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <!-- <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        /> -->
-        <h1>PSI Table</h1>
-      </div>
-    </v-app-bar>
-
-    <v-main>
-      <router-view/>
-    </v-main>
-  </v-app>
+    <v-app>
+        <v-app-bar app color="primary" dark>
+            <div class="d-flex align-center">
+                <h1>PSI Table</h1>
+            </div>
+        </v-app-bar>
+        <nav>
+            <router-link to="/">Home</router-link> |
+            <router-link to="/about">About</router-link>
+        </nav>
+        <router-view />
+    </v-app>
 </template>
 
-<script lang="ts">
-import Vue from 'vue';
+<style>
+    #app {
+        font-family: Avenir, Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-align: center;
+        color: #2c3e50;
+    }
 
-export default Vue.extend({
-  name: 'App',
+    nav {
+        padding: 100px;
+    }
 
-  data: () => ({
-    //
-  }),
-});
-</script>
+    nav a {
+        font-weight: bold;
+        color: #2c3e50;
+    }
+
+    nav a.router-link-exact-active {
+        color: #42b983;
+    }
+</style>

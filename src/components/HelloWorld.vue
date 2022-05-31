@@ -1,17 +1,15 @@
 <template>
     <v-container>
-     
+        <h1>{{ msg }}</h1>
     </v-container>
 </template>
 
 <script lang="ts">
-    import Vue from 'vue'
+    import { Component, Prop, Vue } from 'vue-property-decorator';
 
-    export default Vue.extend({
-        name: 'HelloWorld',
-
-        data: () => ({
-
-        }),
-    })
+    @Component
+    export default class HelloWorld extends Vue
+    {
+        @Prop() private msg!: string;
+    }
 </script>
