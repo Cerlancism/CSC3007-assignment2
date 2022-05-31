@@ -1,17 +1,20 @@
 <template>
-  <div class="home">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
-  </div>
+    <div class="home">
+        <MainBody msg="Current PSI" />
+        <PSITable />
+    </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+    import { Component, Vue } from 'vue-property-decorator';
+    import MainBody from '@/components/MainBody.vue'; // @ is an alias to /src
+    import PSITable from '@/components/PSITable.vue';
 
-@Component({
-  components: {
-    HelloWorld,
-  },
-})
-export default class HomeView extends Vue {}
+    @Component({
+        components: {
+            MainBody,
+            PSITable
+        },
+    })
+    export default class HomeView extends Vue { }
 </script>

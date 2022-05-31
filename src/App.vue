@@ -1,37 +1,43 @@
 <template>
     <v-app>
-        <v-app-bar app color="primary" dark>
-            <div class="d-flex align-center">
-                <h1>PSI Table</h1>
-            </div>
-        </v-app-bar>
-        <nav>
-            <router-link to="/">Home</router-link> |
-            <router-link to="/about">About</router-link>
-        </nav>
+        <v-card :class="radius">
+            <v-toolbar color="dark" dark flat>
+                <v-toolbar-title>PSI Table</v-toolbar-title>
+
+                <v-spacer></v-spacer>
+
+                <template v-slot:extension>
+                    <v-tabs v-model="tab" align-with-title>
+                        <v-tabs-slider color="white"></v-tabs-slider>
+
+                        <v-tab to="/">Home</v-tab>
+                        <v-tab to="/about">About</v-tab>
+                    </v-tabs>
+                </template>
+            </v-toolbar>
+        </v-card>
         <router-view />
     </v-app>
 </template>
 
+<script>
+    export default {
+        data() {
+            return {
+                tab: null,
+                items: ["Home", "About"],
+                radius: "rounded-0",
+            };
+        },
+    };
+</script>
+
 <style>
     #app {
-        font-family: Avenir, Helvetica, Arial, sans-serif;
+        font-family: Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         text-align: center;
         color: #2c3e50;
-    }
-
-    nav {
-        padding: 100px;
-    }
-
-    nav a {
-        font-weight: bold;
-        color: #2c3e50;
-    }
-
-    nav a.router-link-exact-active {
-        color: #42b983;
     }
 </style>
