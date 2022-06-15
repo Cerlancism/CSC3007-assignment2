@@ -2,7 +2,7 @@
     <v-app>
         <v-card :class="radius">
             <v-toolbar color="dark" dark flat>
-                <v-toolbar-title>PSI Table</v-toolbar-title>
+                <v-toolbar-title>Singapore Crime Rate</v-toolbar-title>
 
                 <v-spacer></v-spacer>
 

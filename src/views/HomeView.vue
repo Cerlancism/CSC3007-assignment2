@@ -1,18 +1,23 @@
 <template>
     <div class="home">
-        <MainBody :msg="'Last updated ' + lastUpdated" />
-        <PSITable :responseData="psiResponse" />
-        <p v-if="lastUpdated">
-            <b>Response time: </b> API {{ benchmark.api.toFixed(3) }} ms
+        <CrimeChart :responseData="apiResponse"/>
+        <p>
+            <b>Response time: </b> 
+            <span v-if="loaded">
+                API {{ benchmark.api.toFixed(3) }} ms
+            </span>
+            <span v-else>
+                Loading...
+            </span>
         </p>
     </div>
 </template>
 
 <script lang="ts">
-    import { PSI } from '@/model/psi'
+    import { CrimeData } from '@/model/CrimeData'
     import { Component, Vue } from 'vue-property-decorator';
-    import MainBody from '@/components/MainBody.vue'; // @ is an alias to /src
-    import PSITable from '@/components/PSITable.vue';
+
+    import CrimeChart from '@/components/CrimeChart.vue';
 
     async function sleepAsync(timeout: number)
     {
@@ -24,15 +29,14 @@
 
     @Component({
         components: {
-            MainBody,
-            PSITable
+            CrimeChart
         },
     })
     export default class HomeView extends Vue
     {
-        psiResponse = {} as PSI
+        apiResponse = {} as CrimeData
 
-        lastUpdated = ""
+        loaded = false
 
         benchmark = {
             api: 0
@@ -43,7 +47,7 @@
             const startTime = performance.now()
             try
             {
-                const response = await fetch("https://api.data.gov.sg/v1/environment/psi")
+                const response = await fetch("https://data.gov.sg/api/action/datastore_search?resource_id=83c21090-bd19-4b54-ab6b-d999c251edcf")
 
                 if (!response.ok)
                 {
@@ -52,12 +56,12 @@
 
                 // await sleepAsync(1000)
                 
-                this.psiResponse = JSON.parse(await response.text()) as PSI
+                this.apiResponse = JSON.parse(await response.text()) as CrimeData
 
 
                 this.benchmark.api = performance.now() - startTime
 
-                this.lastUpdated = new Date(this.psiResponse.items[0].update_timestamp).toLocaleString()
+                this.loaded = true
             } catch (e)
             {
                 const error = e as Error
