@@ -1,4 +1,4 @@
-# csc3007-assignment1
+# csc3007-assignment2
 
 ## Project setup
 ```
