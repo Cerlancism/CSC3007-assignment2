@@ -1,6 +1,7 @@
 <template>
     <div class="about">
-        <MainBody msg="This is an about page" />
+        <MainBody msg="Data Source: " />
+        <a target="_blank" href="https://data.gov.sg/dataset/cases-recorded-for-selected-major-offences">https://data.gov.sg/dataset/cases-recorded-for-selected-major-offences</a>
     </div>
 </template>
 

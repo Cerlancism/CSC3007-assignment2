@@ -34,14 +34,18 @@
                 </v-col>
             </v-row>
 
-            <v-slider
-                v-model="selectedYearIndex"
-                :tick-labels="years"
-                :max="years.length - 1"
-                step="1"
-                ticks="always"
-                tick-size="4"
-            ></v-slider>
+            <v-row>
+                <v-col cols="12" sm="12">
+                    <v-slider
+                        v-model="selectedYearIndex"
+                        :tick-labels="years"
+                        :max="years.length - 1"
+                        step="1"
+                        ticks="always"
+                        tick-size="4"
+                    ></v-slider>
+                </v-col>
+            </v-row>
         </div>
     </v-container>
 </template>
@@ -200,9 +204,9 @@
                     .data(data)
 
                 u.enter()
-                    .append("rect") 
-                    .merge(u as unknown as any) 
-                    .transition() 
+                    .append("rect")
+                    .merge(u as unknown as any)
+                    .transition()
                     .duration(333)
                     .attr("x", (d: { type: string; value: number; year: number; }) => x(d.type) as number)
                     .attr("y", (d: { type: string; value: number; year: number; }) => y(d.value))
